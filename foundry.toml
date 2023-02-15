@@ -7,6 +7,16 @@ libs = ['lib']
 remappings = [
 ]
 fs_permissions = [{access = "write", path = "./reports"}]
+libraries = [
+  "lib/aave-v3-core/contracts/protocol/libraries/logic/BorrowLogic.sol:BorrowLogic:0xd1b3e25fd7c8ae7caddc6f71b461b79cd4ddcfa3",
+    "lib/aave-v3-core/contracts/protocol/libraries/logic/BridgeLogic.sol:BridgeLogic:0xfe76366a986b72c3f2923e05e6ba07b7de5401e4",
+    "lib/aave-v3-core/contracts/protocol/libraries/logic/ConfiguratorLogic.sol:ConfiguratorLogic:0xaa84d489f71d2a8d71e992143a2de8b3aa54aaa9",
+    "lib/aave-v3-core/contracts/protocol/libraries/logic/EModeLogic.sol:EModeLogic:0x70bf6ec6fca41a7d08dcbb9909985ac0a4510b5e",
+    "lib/aave-v3-core/contracts/protocol/libraries/logic/FlashLoanLogic.sol:FlashLoanLogic:0x1d69c48a35ddd241e72a31db0e637676d89fc553",
+    "lib/aave-v3-core/contracts/protocol/libraries/logic/LiquidationLogic.sol:LiquidationLogic:0x398808db36da6ba4e30d4fb88d72c3473921bc6e",
+    "lib/aave-v3-core/contracts/protocol/libraries/logic/PoolLogic.sol:PoolLogic:0x8be473dcfa93132658821e67cbeb684ec8ea2e74",
+    "lib/aave-v3-core/contracts/protocol/libraries/logic/SupplyLogic.sol:SupplyLogic:0xb04280b09f47cfd81906817505f24cefe1ba86d2"
+]
 
 [rpc_endpoints]
 mainnet = "${RPC_MAINNET}"

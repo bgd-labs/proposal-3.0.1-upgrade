@@ -253,6 +253,8 @@ contract DeployOptimism is Script {
     require(block.chainid == 10, 'OPTIMISM_ONLY');
     vm.startBroadcast();
     DeployPayloads.deployOptimism();
+    // L2 Pool 0x15196D30Bc37d2fc5C718ffCd9d7687D76f3Ad1f
+    // configurator 0x3e05Eb6e12a3C9ED5e46a710BcF052efd6D73fBd
     vm.stopBroadcast();
   }
 }
@@ -289,6 +291,25 @@ contract DeployHarmony is Script {
     require(block.chainid == 1666600000, 'HARMONY_ONLY');
     vm.startBroadcast();
     DeployPayloads.deployHarmony();
+    vm.stopBroadcast();
+  }
+}
+
+contract RecoverOptimism is Script {
+  AToken constant ATOKEN = AToken(0x3cd1dFB81C50A5300C60a181ED145a7286d81e0a);
+
+  function run() external {
+    vm.startBroadcast();
+    ATOKEN.initialize(
+      AaveV3Optimism.POOL,
+      address(0),
+      address(0),
+      IAaveIncentivesController(address(0)),
+      0,
+      'ATOKEN_IMPL',
+      'ATOKEN_IMPL',
+      '0x00'
+    );
     vm.stopBroadcast();
   }
 }

@@ -17,12 +17,14 @@ git-diff :
 	@printf '%s\n%s\n%s\n' "\`\`\`diff" "$$(git diff --no-index --diff-algorithm=patience --ignore-space-at-eol ${before} ${after})" "\`\`\`" > diffs/${out}.md
 
 # Deploy Payloads
-deploy-polygon-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployPolygon --rpc-url polygon --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow
-deploy-optimism-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployOptimism --rpc-url optimism --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow
-deploy-arbitrum-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployArbitrum --rpc-url arbitrum --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow
-deploy-avalanche-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployAvalanche --rpc-url avalanche --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow
-deploy-fantom-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployFantom --rpc-url fantom --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow
+deploy-polygon-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployPolygon --rpc-url ${RPC_POLYGON} --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow --resume --etherscan-api-key ${ETHERSCAN_API_KEY_POLYGON}
+deploy-optimism-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployOptimism --rpc-url ${RPC_OPTIMISM} --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow --resume --etherscan-api-key ${ETHERSCAN_API_KEY_OPTIMISM}
+deploy-arbitrum-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployArbitrum --rpc-url ${RPC_ARBITRUM} --broadcast --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow --resume --etherscan-api-key ${ETHERSCAN_API_KEY_ARBITRUM}
+deploy-avalanche-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployAvalanche --rpc-url ${RPC_AVALANCHE} --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow --resume --etherscan-api-key ${ETHERSCAN_API_KEY_AVALANCHE}
+deploy-fantom-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployFantom --rpc-url ${RPC_FANTOM} --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow --resume --etherscan-api-key ${ETHERSCAN_API_KEY_FANTOM}
 deploy-harmony-ledger :;  forge script scripts/DeployPayloads.s.sol:DeployHarmony --rpc-url harmony --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} -vvvv --slow
+
+recover-optimism-ledger :;  forge script scripts/DeployPayloads.s.sol:RecoverOptimism --rpc-url ${RPC_OPTIMISM} --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv --slow --etherscan-api-key ${ETHERSCAN_API_KEY_OPTIMISM}
 
 # Create Proposal
 create-proposal-ledger :; forge script scripts/CreateProposal.s.sol:CreateUpgradeProposal --rpc-url mainnet --broadcast --legacy --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} -vvvv
